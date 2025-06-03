@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 9090
 
-CMD ["/wait-for-it.sh", "mysql:9306", "--", "node", "dist/server.js"]
+CMD ["/wait-for-it.sh", "mysql:3306", "--", "node", "dist/server.js"]
