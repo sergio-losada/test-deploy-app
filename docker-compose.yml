@@ -10,6 +10,19 @@ services:
     networks:
       - backend
 
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: test
+    ports:
+      - "9306:3306"
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+
   api:
     build: ./api
     ports:
@@ -25,19 +38,7 @@ services:
     networks:
       - backend
 
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: 
-      MYSQL_DATABASE: test
-    ports:
-      - "9306:3306"
-    volumes:
-      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
-      - mysql_data:/var/lib/mysql
-    networks:
-      - backend
-
+  
 volumes:
   mysql_data:
 
