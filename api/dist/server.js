@@ -50,5 +50,5 @@ app.use((err, req, res, next) => {
 });
 /** Server */
 const httpServer = http_1.default.createServer(app);
-const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 8080;
+const PORT = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 9090;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));

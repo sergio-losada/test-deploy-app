@@ -10,7 +10,7 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: 'http://localhost:9200',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -61,5 +61,5 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 
 /** Server */
 const httpServer = http.createServer(app);
-const PORT: any = process.env.PORT ?? 8080;
+const PORT: any = process.env.PORT ?? 9090;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
