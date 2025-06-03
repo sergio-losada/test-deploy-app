@@ -14,13 +14,12 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: 
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes" 
       MYSQL_DATABASE: test
     ports:
       - "9306:3306"
     volumes:
-      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
-      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
 
