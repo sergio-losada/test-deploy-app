@@ -7,6 +7,8 @@ services:
       - "9200:80"
     depends_on:
       - api
+    networks:
+      - backend
 
   api:
     build: ./api
@@ -20,6 +22,8 @@ services:
       DB_NAME: test
     depends_on:
       - mysql
+    networks:
+      - backend
 
   mysql:
     image: mysql:8.0
@@ -31,6 +35,11 @@ services:
     volumes:
       - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
       - mysql_data:/var/lib/mysql
+    networks:
+      - backend
 
 volumes:
   mysql_data:
+
+networks:
+  backend:
