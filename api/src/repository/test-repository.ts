@@ -31,7 +31,7 @@ class TestRepository {
         if (!this.connection) {
             await this.connect();
         }
-        const [rows] = await this.connection!.execute('SELECT * FROM `profile` LIMIT 1');
+        const [rows] = await this.connection!.execute('SELECT * FROM `profiles` LIMIT 1');
         return rows;
     }
 }
