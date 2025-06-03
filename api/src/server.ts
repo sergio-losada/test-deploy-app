@@ -10,7 +10,10 @@ import cors from 'cors';
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:9200',
+  origin: [
+    'http://localhost:9200',
+    'http://34.240.214.238:9200'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
