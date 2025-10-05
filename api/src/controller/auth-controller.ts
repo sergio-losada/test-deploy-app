@@ -14,7 +14,6 @@ const fakeUser = {
 
 class AuthController {
   async login(req: Request, res: Response): Promise<void> {
-    console.log("GOLA")
     console.log(req.body)
     const { username, password } = req.body;
 
