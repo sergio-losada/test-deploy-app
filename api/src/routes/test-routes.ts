@@ -7,4 +7,4 @@ const controller = new TestController();
 // Llamada GET genérica al controlador
 router.get('/', (req, res) => controller.getTestResponse(req, res));
 
-export = router;
+export default router;

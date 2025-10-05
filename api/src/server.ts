@@ -1,3 +1,4 @@
+// server.ts
 import http from 'http';
 import express from 'express';
 import morgan from 'morgan';
@@ -11,8 +12,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    'http://localhost:9200',
-    'http://34.240.214.238:9200'
+    'http://localhost:4200',
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -44,10 +44,10 @@ app.use(morgan(':methodColored :url :status :res[content-length] - :response-tim
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Rutas públicas
-app.use('/auth', authRoutes);
+/** Public routes */
+app.use('/auth', authRoutes); 
 
-// Rutas protegidas
+/** Protected routes */
 // app.use('/', authenticateToken, routes);
 app.use('/', routes);
 
@@ -64,5 +64,5 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 
 /** Server */
 const httpServer = http.createServer(app);
-const PORT: any = process.env.PORT ?? 9090;
+const PORT: any = process.env.PORT ?? 8080;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));

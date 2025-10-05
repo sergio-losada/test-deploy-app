@@ -10,6 +10,6 @@ RUN chmod +x /wait-for-it.sh
 
 RUN npm run build
 
-EXPOSE 9090
+EXPOSE 8080
 
 CMD ["/wait-for-it.sh", "mysql:3306", "--", "node", "dist/server.js"]
