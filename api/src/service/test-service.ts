@@ -19,6 +19,22 @@ class TestService {
     }
   }
 
+  async getOne(id: string) {
+    return await this.repository.getOne(id);
+  }
+
+  async create(data: any) {
+    return await this.repository.create(data);
+  }
+
+  async update(id: string, data: any) {
+    return await this.repository.update(id, data);
+  }
+
+  async delete(id: string) {
+    return await this.repository.delete(id);
+  }
+
 }
 
 export { TestService };
