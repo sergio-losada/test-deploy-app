@@ -46,10 +46,11 @@ class TestRepository {
     async create(data: Profile): Promise<Profile> {
         await this.connect();
         const [result]: any = await this.connection!.execute(
-            'INSERT INTO profiles (name, email) VALUES (?, ?)',
-            [data.name, data.email]
+            'INSERT INTO profiles (name, email, password) VALUES (?, ?, ?)',
+            [data.name, data.email, data.password]
         );
-        return { ...data, id: result.insertId };
+        // La contraseña NO se devuelve
+        return { id: result.insertId, name: data.name, email: data.email } as Profile;
     }
 
     async update(id: string, data: Profile): Promise<any | null> {
@@ -77,6 +78,15 @@ class TestRepository {
         await this.connect();
         const [result]: any = await this.connection!.execute('DELETE FROM profiles WHERE id = ?', [id]);
         return result.affectedRows > 0;
+    }
+
+    async findByEmail(email: string): Promise<Profile | null> {
+        await this.connect();
+        const [rows]: any = await this.connection!.execute(
+            'SELECT * FROM profiles WHERE email = ? LIMIT 1',
+            [email]
+        );
+        return rows.length ? rows[0] as Profile : null;
     }
 
 }
